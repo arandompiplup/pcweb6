@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 
@@ -49,7 +49,7 @@ export default function SignUpPage() {
                 }
         }}>Sign Up</Button>
       </Form>
-      <p></p>
+      <p>{error}</p>
     </Container>
   );
 }
