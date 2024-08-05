@@ -8,8 +8,8 @@ import { auth } from "../firebase";
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("")
-  const navigate = useNavigate()
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
   
   return (
     <Container>
@@ -44,7 +44,7 @@ export default function LoginPage() {
             if (canLogin)
                 try {
                     await signInWithEmailAndPassword(auth, username, password);
-                    navigate("/")
+                    navigate("/");
                 } catch (error) {
                     setError(error.message)
         }}}>
