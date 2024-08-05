@@ -42,7 +42,7 @@ export default function SignUpPage() {
             const canSignup = username && password;
             if (canSignup)
                 try {
-                    await createUserWithEmailAndPassword(auth. username, password);
+                    await createUserWithEmailAndPassword(auth, username, password);
                     navigate("/")
                 } catch (error) {
                     setError(error.message)
