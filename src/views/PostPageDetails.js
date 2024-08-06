@@ -16,6 +16,7 @@ export default function PostPageDetails() {
   const navigate = useNavigate();
 
   async function deletePost(id) {
+   // checkPost(id)
     await deleteDoc(doc(db, "posts", id));
     navigate("/");
   }
@@ -26,6 +27,17 @@ export default function PostPageDetails() {
     setCaption(post.caption);
     setImage(post.image);
   }
+
+//   async function checkPost(id) {
+//     const postDocument = await getDoc(doc(db, "posts", id));
+//     const post = postDocument.data();
+//     console.log(postDocument.data())
+    // if (post.author !== user.uid) {
+    //     alert("401 unauthorised, not your post dont anyhow delete")
+    //     navigate("/")
+    // }
+ // }
+
 
   useEffect(() => {
     if (loading) return;

@@ -18,13 +18,16 @@ export default function PostPageAdd() {
     const imageReference = ref(storage, `images/${image.name}`);
     const response = await uploadBytes(imageReference, image);
     const imageURL = await getDownloadURL(response.ref);
-    await addDoc(collection(db, "posts"), {caption, image: imageURL});
+    const author = user.uid
+    await addDoc(collection(db, "posts"), {caption, image: imageURL, author});
     navigate("/");
   }
 
   useEffect(() => {
+    
     if (loading) return;
     if (!user) return navigate("/login")
+    console.log(user.uid)
   }, [navigate, user, loading]);
 
   return (

@@ -28,6 +28,10 @@ export default function PostPageUpdate() {
   async function getPost(id) {
     const postDocument = await getDoc(doc(db, "posts", id));
     const post = postDocument.data();
+    if (post.author !== user.uid) {
+        alert("401 unauthorised, not your post dont anyhow edit")
+        navigate("/")
+    }
     setCaption(post.caption);
     setImage(post.image);
     setPreviewImage(post.image)
@@ -71,8 +75,6 @@ export default function PostPageUpdate() {
             <Form.Label>Image URL</Form.Label>
             <Form.Control
               type="file"
-              placeholder="https://zca.sg/img/1"
-              value={image}
               onChange={(e) => {
                 const imageFile = e.target.files[0];
                 const previewImage = URL.createObjectURL(imageFile);
