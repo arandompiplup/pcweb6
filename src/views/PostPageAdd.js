@@ -9,10 +9,18 @@ import { signOut } from "firebase/auth";
 export default function PostPageAdd() {
   const [caption, setCaption] = useState("");
   const [image, setImage] = useState("");
+  const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
 
-  async function addPost() {}
+  async function addPost() {
+    await addDoc(collection(db, "posts"), {caption, image});
+    navigate("/");
+  }
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (loading) return;
+    if (!user) return navigate("/login")
+  }, [navigate, user, loading]);
 
   return (
     <>
@@ -21,7 +29,7 @@ export default function PostPageAdd() {
           <Navbar.Brand href="/">Tinkergram</Navbar.Brand>
           <Nav>
             <Nav.Link href="/add">New Post</Nav.Link>
-            <Nav.Link href="/add">🚪</Nav.Link>
+            <Nav.Link onClick={(e) => signOut(auth)}>🚪</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
