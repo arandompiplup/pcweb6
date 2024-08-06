@@ -62,6 +62,10 @@ export default function PostPageUpdate() {
               onChange={(text) => setCaption(text.target.value)}
             />
           </Form.Group>
+        
+          <Form.Group>
+            <Image src={previewImage} style={{objectFit: "cover", width:"10rem", height:"10rem",}} />
+          </Form.Group>
 
           <Form.Group className="mb-3" controlId="image">
             <Form.Label>Image URL</Form.Label>
@@ -71,7 +75,7 @@ export default function PostPageUpdate() {
               value={image}
               onChange={(e) => {
                 const imageFile = e.target.files[0];
-                const previewImage = URL.createObjectURL(imageFile)
+                const previewImage = URL.createObjectURL(imageFile);
                 setImage(imageFile);
                 setPreviewImage(previewImage);
             }}
