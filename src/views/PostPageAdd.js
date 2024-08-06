@@ -12,7 +12,7 @@ export default function PostPageAdd() {
   const [image, setImage] = useState("");
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
-  const [previewImage, setPreviewImage] = useState("https://zca.sg/img/placeholder")
+  const [previewImage, setPreviewImage] = useState("https://zca.sg/img/placeholder");
 
   async function addPost() {
     const imageReference = ref(storage, `images/${image.name}`);
